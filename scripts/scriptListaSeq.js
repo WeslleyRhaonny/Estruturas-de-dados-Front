@@ -53,7 +53,9 @@ function insertNumber() {
     const position = isNaN(parseInt(posInput.value)) ? -1 : parseInt(posInput.value);
 
 
-    if (!isNaN(number) && position == -1) {
+    if (position === 0) {
+        alert("A posição deve ser maior do que 0.");
+    } else if (!isNaN(number) && position == -1) {
         list[currentIndex] = number;
         currentIndex++;
         updateVisualList();
@@ -69,8 +71,7 @@ function insertNumber() {
         list[position - 1] = number;
         currentIndex++;
         updateVisualList();
-    }  
-    else {
+    } else {
         alert("Insira um número válido ou uma posição válida.");
     }
 }

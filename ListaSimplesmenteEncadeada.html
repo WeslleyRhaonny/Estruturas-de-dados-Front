@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Sequencial</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Lista Simplesmente Encadeada</title>
+
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/LSE.css">
 
 </head>
 <body>
@@ -12,15 +14,15 @@
         <h1>Lista Simplesmente Encadeada</h1>
         <input type="number" id="numberInput" placeholder="Insira um número">
         <input type="number" id="posInput" placeholder="Insira a posição">
-        <button onclick="insertNumber()">Inserir</button>
+        <button onclick="insert()">Inserir</button>
         <!-- <button onclick="deleteNumber()">Remover por valor</button> -->
-        <button onclick="deleteNumberPosition()">Remover por id</button>
+        <button onclick="remove()">Remover</button>
         <button onclick="searchNumber()">Buscar por valor</button>
         <button onclick="searchNumberPosition()">Buscar por id</button>
         <div id="output"></div>
         <div id="visualList" class="visual-list"></div>
         <h3 id="elementCount">Número de elementos: 00</h3>
     </div>
-    <div></div>
+    <script src="scripts/scriptLSE.js"></script>
 </body>
 </html>
