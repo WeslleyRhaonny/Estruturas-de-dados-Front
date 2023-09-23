@@ -9,30 +9,31 @@ class LSE {
     constructor() {
         this.cabeca = null;
         this.nElementos = 0;
+
     }
 
     vazia() {
         return this.nElementos === 0;
     }
 
-    tamanho() {
+    tamanho() { // Conferir se utilizamos essa função em algum lugar
         let aux = this.cabeca;
         let cont = 0;
-        while (aux !== null) {
+        while (aux !== null) { 
             aux = aux.prox();
             cont++;
         }
         return cont;
     }
 
-    elemento(pos) {
+    elemento(pos) { // Conferir se utilizamos essa função em algum lugar
         if (this.vazia()) {
             return -1;
         }
 
         if (pos < 1 || pos > this.tamanho()) {
             return -1;
-        }
+        } 
 
         let aux = this.cabeca;
         for (let i = 1; i < pos; i++) {
@@ -60,19 +61,34 @@ class LSE {
         return -1;
     }
 
-    createVisualList() {
+    criaListaVisualmente() {
         const visualList = document.getElementById("visualList");
         visualList.innerHTML = "";
     
         let aux = lista.cabeca;
     
         while (aux) {
-            const square = document.createElement("div");
-            square.className = "square";
-            square.textContent = aux.conteudo;
-            visualList.appendChild(square);
+            const quadrado = document.createElement("div");
+            quadrado.className = "quadrado";
+            quadrado.textContent = aux.conteudo;
+            visualList.appendChild(quadrado);
+            if (aux.prox != null) {
+                this.addArrow();
+            }
             aux = aux.prox;
         }
+    }
+
+    atualizaListaVisual() {
+        const elementCount = document.getElementById("elementCount");
+        elementCount.textContent = `Número de elementos: ${this.nElementos}`;
+    }
+
+    addArrow() {
+        const arrow = document.createElement("div");
+        arrow.textContent = "➞"; // Caractere da seta
+        arrow.className = "arrow";
+        visualList.appendChild(arrow);
     }
 
     insereInicioLista() {
@@ -84,16 +100,16 @@ class LSE {
         this.nElementos++;
 
         // Cria caixas com base na lista atualizada
-        this.createVisualList();
+        this.criaListaVisualmente();
+        this.atualizaListaVisual();
         return true;
     }
 
     insereMeioLista() {
         let novoNo = new No();
         novoNo.conteudo = parseInt(document.getElementById("numberInput").value);
-    
-        const pos = parseInt(document.getElementById("posInput").value);
-    
+        const posInput = document.getElementById("posInput");
+        const pos = isNaN(parseInt(posInput.value)) ? this.nElementos + 1 : parseInt(posInput.value);
         if (pos <= 0 || pos > this.nElementos + 1) {
             return false;
         }
@@ -108,7 +124,8 @@ class LSE {
     
         this.nElementos++;
         // Cria caixas com base na lista atualizada
-        this.createVisualList();
+        this.criaListaVisualmente();
+        this.atualizaListaVisual();
         return true;
     }
     
@@ -132,34 +149,46 @@ class LSE {
     }
     
     removeInicioLista() {
-        let p = this.cabeca;
-        let valorRemovido = p.conteudo();
+        if (this.vazia()) {
+            return -1;
+        }
 
-        this.cabeca = p.prox();
+        let valorRemovido = this.cabeca.conteudo;
+        this.cabeca = this.cabeca.prox;
         this.nElementos--;
 
-        p = null;
-
+        // Atualize a representação visual da lista
+        this.criaListaVisualmente();
+        this.atualizaListaVisual();
         return valorRemovido;
     }
 
     removeNaLista() {
-        let antecessor = this.cabeca;
-        let pos = parseInt(document.getElementById("posInput").value);
-        for (let i = 1; i < pos - 1; i++) {
-            antecessor = antecessor.prox();
+        const pos = parseInt(document.getElementById("posInput").value);
+
+        if (this.vazia() || pos <= 0 || pos > this.nElementos) {
+            return -1;
         }
-        let atual = antecessor.prox();
 
-        let valorRemovido = atual.conteudo();
+        if (pos === 1) {
+            return this.removeInicioLista();
+        } else {
+            let antecessor = this.cabeca;
+            for (let i = 1; i < pos - 1; i++) {
+                antecessor = antecessor.prox;
+            }
+            let atual = antecessor.prox;
 
-        antecessor.prox(atual.prox());
+            let valorRemovido = atual.conteudo;
+            antecessor.prox = atual.prox;
 
-        this.nElementos--;
+            this.nElementos--;
 
-        atual = null;
-
-        return valorRemovido;
+            // Atualize a representação visual da lista
+            this.criaListaVisualmente();
+            this.atualizaListaVisual();
+            return valorRemovido;
+        }
     }
 
     remove() {
@@ -173,12 +202,46 @@ class LSE {
         }
 
         if (pos === 1) {
-            alert("Deu Certo1");
             return this.removeInicioLista();
         } else {
-            alert("Deu Certo2");
             return this.removeNaLista();
         }
+    }
+
+    buscaPorValor(valor) {
+        let aux = this.cabeca;
+        let pos = 1;
+        const posicoes = [];
+    
+        while (aux !== null) {
+            if (aux.conteudo === valor) {
+                posicoes.push(pos);
+            }
+            aux = aux.prox;
+            pos++;
+        }
+    
+        if (posicoes.length > 0) {
+            return posicoes;
+        }
+        return -1; // Retorna -1 se o valor não for encontrado na lista
+    }
+    
+
+    buscaPorPosicao(posicao) {
+        if (posicao < 1 || posicao > this.nElementos) {
+            return -1; // Posição inválida
+        }
+
+        let aux = this.cabeca;
+        let contador = 1;
+
+        while (contador < posicao) {
+            aux = aux.prox;
+            contador++;
+        }
+
+        return aux.conteudo; // Retorna o valor na posição desejada
     }
 }
 
@@ -192,64 +255,24 @@ function remove() {
     lista.remove();
 }
 
-function searchNumber() {
-    
+function buscaNumero() {
+    const valorProcurado = parseInt(document.getElementById("numberInput").value);
+    const posicao = lista.buscaPorValor(valorProcurado);
+
+    if (posicao !== -1) {
+        alert(`O número ${valorProcurado} está na posição ${posicao}.`);
+    } else {
+        alert("O valor não foi encontrado na lista.");
+    }
 }
 
-function searchNumberPosition() {
-    let pos = parseInt(document.getElementById("posInput").value);
-    let cont = 1;
-    let aux = this.cabeca;
-    if(this.vazia()){
-        alert("Lista vazia!");
-    }
+function buscaNumeroPosicao() {
+    const posicaoDesejada = parseInt(document.getElementById("posInput").value);
+    const valorEncontrado = lista.buscaPorPosicao(posicaoDesejada);
 
-    if(pos < 1 || pos > this.nElementos){
-        alert("Posição inválida!");
+    if (valorEncontrado !== -1) {
+        alert(`O valor na posição ${posicaoDesejada} é ${valorEncontrado}.`);
+    } else {
+        alert("Posição inválida.");
     }
-
-    while(cont < pos){
-        let aux = aux.prox();
-        cont++;
-    }
-    
-    return aux.conteudo();
 }
-
-/*function insertNumber(){
-    const numberInput = document.getElementById("numberInput");
-    const number = parseInt(numberInput.value);
-    const posInput = document.getElementById("posInput");
-    const position = parseInt(posInput.value);
-
-    const novoNo = new No(number);
-    
-    if (nElementos == 0) {
-        this.cabeca = novoNo;
-        nElementos++;
-    } 
-    else if(position > nElementos){
-        let atual = this.cabeca; // Atual começa da cabeça
-        
-        while (atual.proximo != null) { // Pega o próximo até chegar no
-            atual = atual.proximo;
-        }
-        atual.proximo = novoNo;
-        nElementos++;
-    } 
-    else {
-        let atual = this.cabeca;
-        let positianAtual = 0;
-        
-        while(positianAtual < position){
-            positianAtual++;
-            atual = atual.proximo;
-        }
-        atual.proximo = novoNo;
-
-    }
-
-    const LSE = new LSE();
-
-}
-*/

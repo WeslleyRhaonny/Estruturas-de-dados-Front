@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista Sequencial</title>
-
     <!-- Fonts do projeto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,16 +17,16 @@
 <body>
     <div class="container" id="container">
         <h1 class="container-title">Lista Sequencial</h1>
-        <input class="input" type="number" id="numberInput" placeholder="Insira um número">
-        <input class="input" type="number" id="posInput" placeholder="Insira a posição">
-        <button onclick="insertNumber()" class="button insert">Inserir</button>
-        <!--<button onclick="deleteNumber()">Remover por valor</button> -->
-        <button onclick="deleteNumberPosition()" class="button removeID">Remover por id</button>
-        <button onclick="searchNumber()" class="button searchNumber">Buscar por valor</button>
-        <button onclick="searchNumberPosition()" class="button numberPosition">Buscar por id</button>
+        <input class="input" type="numero" id="numInput" placeholder="Insira um número">
+        <input class="input" type="numero" id="posInput" placeholder="Insira a posição">
+        <button onclick="insereNumero()" class="button insert">Inserir</button>
+        <!--<button onclick="deletenumero()">Remover por valor</button> -->
+        <button onclick="deleteNumeroPosicao()" class="button removeID">Remover por id</button>
+        <button onclick="buscaNumero()" class="button buscaNumero">Buscar por valor</button>
+        <button onclick="buscaNumeroPosicao()" class="button numeroPosition">Buscar por id</button>
         <div id="output"></div>
         <div id="visualList" class="visual-list"></div>
-        <p class="text" id="elementCount">Número de elementos: 00</p>
+        <p class="text" id="elementoConteudo">Número de elementos: 00</p>
     </div>
 
     <!-- Script -->

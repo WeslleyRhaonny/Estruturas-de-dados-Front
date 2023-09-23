@@ -5,7 +5,6 @@ body {
     justify-content: center;
     align-items: center;
 
-    height: 100vh;
     width: 100vw;
 
     font-family: 'Montserrat';
@@ -17,7 +16,7 @@ body {
     margin: 20px;
     padding: 1em;
     width: 850px;
-
+    height: auto;
     background-color: #fdfdfd;
     border-radius: 8px;
     box-shadow: 0px 8px 12px rgba(0,0,0,0.3);

@@ -1,109 +1,110 @@
-let maxSize;
+let tamMax;
 
 while (true) {
-    maxSize = parseInt(prompt("Digite o tamanho da lista sequencial:"));
-    if (maxSize > 0) {
+    tamMax = parseInt(prompt("Digite o tamanho da lista sequencial:"));
+    if (tamMax > 0) {
 
-        break; // Sai do loop se maxSize for diferente de 0 e não for NaN
+        break; // Sai do loop se tamMax for diferente de 0 e não for NaN
     }
     alert("Tamanho inválido! O tamanho da lista não pode ser 0 ou indefinido.");
 }
 
-let list = new Array(maxSize);
-let currentIndex = 0;
+let lista = new Array(tamMax);
+let indice = 0;
 
-function initList() {
-    createVisualList();
+function iniciaLista() {
+    criaListaVisualmente();
 }
 
-function createVisualList() {
-    const visualList = document.getElementById("visualList");
-    visualList.innerHTML = "";
+function criaListaVisualmente() {
+    const visualLista = document.getElementById("visualList");
+    visualLista.innerHTML = "";
 
-    for (let i = 0; i < maxSize; i++) {
-        const square = document.createElement("div");
-        square.className = "square";
-        visualList.appendChild(square);
+    for (let i = 0; i < tamMax; i++) {
+        const quadrado = document.createElement("div");
+        quadrado.className = "quadrado";
+        visualLista.appendChild(quadrado);
     }
 }
 
-function updateVisualList() {
-    const squares = document.querySelectorAll(".square");
-    squares.forEach((square, index) => {
-        if (list[index] !== undefined) {
-            square.textContent = list[index];
+function atualizaListaVisual() {
+    const quadrados = document.querySelectorAll(".quadrado");
+    quadrados.forEach((quadrado, indices) => {
+        if (lista[indices] !== undefined) {
+            quadrado.textContent = lista[indices];
         } else {
-            square.textContent = "";
+            quadrado.textContent = "";
         }
     });
 
-    const elementCount = document.getElementById("elementCount");
-    elementCount.textContent = `Número de elementos: ${currentIndex}`;
+    const elementoConteudo = document.getElementById("elementoConteudo");
+    elementoConteudo.textContent = `Número de elementos: ${indice}`;
 }
 
-function insertNumber() {
-    if(currentIndex == maxSize){
-        alert("A Lista está totalmente preenchida");
+function insereNumero() {
+    if(indice == tamMax){
+        alert("A listaa está totalmente preenchida");
         return;
     }
     
-    const numberInput = document.getElementById("numberInput");
+    const numInput = document.getElementById("numInput");
     const posInput = document.getElementById("posInput");
-    const number = parseInt(numberInput.value);
-    const position = isNaN(parseInt(posInput.value)) ? -1 : parseInt(posInput.value);
+    const numero = parseInt(numInput.value);
+    const posicao = isNaN(parseInt(posInput.value)) ? -1 : parseInt(posInput.value);
 
 
-    if (position === 0) {
+    if (posicao === 0) {
         alert("A posição deve ser maior do que 0.");
-    } else if (!isNaN(number) && position == -1) {
-        list[currentIndex] = number;
-        currentIndex++;
-        updateVisualList();
-    } else if (!isNaN(number) && position >= 0 && position <= maxSize && position <= currentIndex + 1) {
-        let aux = currentIndex;
-        for (let j = aux; j >= position - 1; j--) {
-            list[j + 1] = list[j]; // Move o elemento à direita para a próxima posição
+    } else if (!isNaN(numero) && posicao == -1) {
+        lista[indice] = numero;
+        indice++;
+        atualizaListaVisual();
+    } else if (!isNaN(numero) && posicao >= 0 && posicao <= tamMax && posicao <= indice + 1) {
+        let aux = indice;
+        for (let j = aux; j >= posicao - 1; j--) {
+            lista[j + 1] = lista[j]; // Move o elemento à direita para a próxima posição
         }
-        list[position - 1] = number;
-        currentIndex++;
-        updateVisualList();
-    } else if (!isNaN(number) && position >= 0 && position <= maxSize && position == currentIndex + 1) {
-        list[position - 1] = number;
-        currentIndex++;
-        updateVisualList();
+        lista[posicao - 1] = numero;
+        indice++;
+        atualizaListaVisual();
+    } else if (!isNaN(numero) && posicao >= 0 && posicao <= tamMax && posicao == indice + 1) {
+        lista[posicao - 1] = numero;
+        indice++;
+        atualizaListaVisual();
     } else {
         alert("Insira um número válido ou uma posição válida.");
     }
 }
 
-function deleteNumberPosition() {
+function deleteNumeroPosicao() {
     const posInput = document.getElementById("posInput");
-    const position = parseInt(posInput.value);
-    for(let i = position; i<= currentIndex; i++){
-        list[i-1] = list[i];
-    }
-    if (position >= 0 && position <= currentIndex && !isNaN(list[position-2])) {
-        list[currentIndex] = undefined;
-        currentIndex--;
-        updateVisualList();
+    const posicao = parseInt(posInput.value);
+
+    if (posicao >= 1 && posicao <= indice) {
+        for (let i = posicao - 1; i < indice - 1; i++) {
+            lista[i] = lista[i + 1];
+        }
+        lista[indice - 1] = undefined;
+        indice--;
+        atualizaListaVisual();
     } else {
         alert("Insira uma posição válida.");
     }
 }
 
-function searchNumber() {
-    const numberInput = document.getElementById("numberInput");
-    const number = parseInt(numberInput.value);
+function buscaNumero() {
+    const numInput = document.getElementById("numInput");
+    const numero = parseInt(numInput.value);
     const posicoes = [];
 
-    for(let i = 0; i < maxSize; i++){
-        if(list[i] == number){
+    for(let i = 0; i < tamMax; i++){
+        if(lista[i] == numero){
             posicoes.push(i+1);
         }
     }
 
     if(posicoes.length!=0){
-        alert(`O número ${number} está ocupando as posições ${posicoes}.`);
+        alert(`O número ${numero} está ocupando as posições ${posicoes}.`);
     }
 
     if(posicoes.length==0){
@@ -112,14 +113,14 @@ function searchNumber() {
     } 
 }
 
-function searchNumberPosition() {
+function buscaNumeroPosicao() {
     const posInput = document.getElementById("posInput");
-    const position = parseInt(posInput.value);
+    const posicao = parseInt(posInput.value);
 
-    if (position >= 0 && position < maxSize) {
-        const number = list[position - 1];
-        if (number !== undefined) {
-            alert(`O número ${number} está ocupando a posição ${position}.`);
+    if (posicao >= 0 && posicao < tamMax) {
+        const numero = lista[posicao - 1];
+        if (numero !== undefined) {
+            alert(`O número ${numero} está ocupando a posição ${posicao}.`);
         } else {
             alert("A posição está vazia na lista.");
         }
@@ -128,9 +129,9 @@ function searchNumberPosition() {
     }
 }
 
-function displayList() {
+function displaylista() {
     const output = document.getElementById("output");
-    output.innerHTML = "Lista: " + list.filter((num) => num !== undefined).join(", ");
+    output.innerHTML = "listaa: " + lista.filter((num) => num !== undefined).join(", ");
 }
 
-initList();
+iniciaLista();

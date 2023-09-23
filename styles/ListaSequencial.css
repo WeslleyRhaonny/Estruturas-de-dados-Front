@@ -4,8 +4,6 @@ body {
 
     justify-content: center;
     align-items: center;
-
-    height: 100vh;
     width: 100vw;
 
     font-family: 'Montserrat';
@@ -16,8 +14,8 @@ body {
 .container {
     margin: 20px;
     padding: 1em;
-    width: 850px;
-
+    width: 900px; 
+    height: auto;
     background-color: #fdfdfd;
     border-radius: 8px;
     box-shadow: 0px 8px 12px rgba(0,0,0,0.3);
@@ -34,7 +32,7 @@ body {
 }
 
 .input{
-    width: 150px;
+    width: 200px;
 
     font-family: 'Montserrat';
     font-size: 16px;
@@ -87,7 +85,7 @@ body {
     margin-top: 20px;
 }
 
-.square {
+.quadrado {
     text-align: center;
     font-weight: 700;
     line-height: 50px;
@@ -107,7 +105,7 @@ body {
     transition: 0.2s;
 }
 
-.square:hover{
+.quadrado:hover{
     background-color: rgb(72, 82, 196);
     cursor: pointer;
 }

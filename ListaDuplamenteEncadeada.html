@@ -6,17 +6,20 @@
     <title>Lista Duplamente Encadeada</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/LDE.css">
+
 </head>
 <body>
     <div id="container">
         <h1>Lista Duplamente Encadeada</h1>
         <input type="number" id="numberInput" placeholder="Insira um número">
         <input type="number" id="posInput" placeholder="Insira a posição">
-        <button onclick="LSE.insere()">Inserir</button>
+        <button onclick="insert()">Inserir</button>
         <!-- <button onclick="deleteNumber()">Remover por valor</button> -->
-        <button onclick="deleteNumberPosition()">Remover por id</button>
-        <button onclick="searchNumber()">Buscar por valor</button>
-        <button onclick="searchNumberPosition()">Buscar por id</button>
+        <button onclick="remove()">Remover por id</button>
+        <button onclick="buscaNumero()">Buscar por valor</button>
+        <button onclick="buscaNumeroPosicao()">Buscar por id</button>
         <div id="output"></div>
         <div id="visualList" class="visual-list"></div>
         <h3 id="elementCount">Número de elementos: 00</h3>
