@@ -2,7 +2,7 @@ body {
     display: flex;
     flex-direction: column;
 
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     width: 100vw;
 
@@ -12,7 +12,6 @@ body {
 }
 
 .container {
-    margin: 20px;
     padding: 1em;
     width: 900px; 
     height: auto;
@@ -29,6 +28,40 @@ body {
 
     font-size: 36px;
     font-weight: 900;    
+}
+
+.menu-container{
+    width: 900px;
+    text-align: left;
+}
+
+.menu{
+    margin-top: 15px;
+    list-style: none;
+    padding: 0; /* Remove o preenchimento interno da lista */ 
+}
+
+.menu-item{
+    margin-top: 15px;
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    display: inline;
+    margin-right: 0px;
+}
+
+.menu-link{
+    margin: 0px;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+
+    background-color: #5865F2;
+    color: #fdfdfd;
+
+    border-radius: 3px 3px 0px 0px;
+
 }
 
 .input{
@@ -83,6 +116,28 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+}
+
+.quadrado-animado {
+    text-align: center;
+    font-weight: 700;
+    line-height: 50px;
+    font-size: 22px;
+    padding: 0 5px;
+    min-width: 45px;
+    height: 0; /* Começa com altura zero */
+    margin: 5px;
+    border-radius: 3px;
+    background-color: #5865F2;
+    color: #fdfdfd;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    animation: expand 1s forwards; /* Inicia a animação chamada "expand" */
+}
+
+@keyframes expand {
+    to {
+        height: 45px; /* Altura final */
+    }
 }
 
 .quadrado {

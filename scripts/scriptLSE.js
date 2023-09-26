@@ -66,14 +66,52 @@ class LSE {
         visualList.innerHTML = "";
     
         let aux = lista.cabeca;
+        const posInsercao = isNaN(parseInt(document.getElementById("posInput").value)) ? this.nElementos : parseInt(document.getElementById("posInput").value);
+        let posicaoAtual = 1; // Variável para rastrear a posição atual
+    
+        while (aux) {
+            const quadrado = document.createElement("div");
+            quadrado.textContent = aux.conteudo;
+    
+            if (posicaoAtual === posInsercao) {
+                quadrado.className = "quadrado-animado";
+            } else {
+                quadrado.className = "quadrado";
+            }
+    
+            visualList.appendChild(quadrado);
+            this.addArrow();
+    
+            if (aux.prox === null) {
+                const nullBox = document.createElement("div");
+                nullBox.className = "quadrado";
+                nullBox.textContent = "Null";
+                visualList.appendChild(nullBox);
+            }
+    
+            aux = aux.prox;
+            posicaoAtual++;
+        }
+    }
+    
+    
+    criaListaVisualmenteRemocao() {
+        const visualList = document.getElementById("visualList");
+        visualList.innerHTML = "";
+    
+        let aux = lista.cabeca;
     
         while (aux) {
             const quadrado = document.createElement("div");
             quadrado.className = "quadrado";
             quadrado.textContent = aux.conteudo;
             visualList.appendChild(quadrado);
-            if (aux.prox != null) {
-                this.addArrow();
+            this.addArrow();
+            if (aux.prox === null) {
+                const nullBox = document.createElement("div");
+                nullBox.className = "quadrado"; 
+                nullBox.textContent = "Null";
+                visualList.appendChild(nullBox);
             }
             aux = aux.prox;
         }
@@ -131,17 +169,15 @@ class LSE {
     
 
     insere() {
-        if (this.vazia() && parseInt(document.getElementById("posInput").value) !== 1) {
-            alert("insira o primeiro elemento na posição 1");
-            return;
-        }
+        const posInput = document.getElementById("posInput");
+        const pos = isNaN(parseInt(posInput.value)) ? this.nElementos + 1 : parseInt(posInput.value);
 
-        if (parseInt(document.getElementById("posInput").value) <= 0 || parseInt(document.getElementById("posInput").value) > this.nElementos + 1) {
+        if (pos <= 0 || parseInt(pos > this.nElementos + 1)) {
             alert("insira uma posição válida");
             return;
         }
 
-        if (parseInt(document.getElementById("posInput").value) === 1) {
+        if (pos === 1) {
             return this.insereInicioLista();
         } else {
             return this.insereMeioLista();
@@ -158,7 +194,7 @@ class LSE {
         this.nElementos--;
 
         // Atualize a representação visual da lista
-        this.criaListaVisualmente();
+        this.criaListaVisualmenteRemocao();
         this.atualizaListaVisual();
         return valorRemovido;
     }
@@ -185,7 +221,7 @@ class LSE {
             this.nElementos--;
 
             // Atualize a representação visual da lista
-            this.criaListaVisualmente();
+            this.criaListaVisualmenteRemocao();
             this.atualizaListaVisual();
             return valorRemovido;
         }

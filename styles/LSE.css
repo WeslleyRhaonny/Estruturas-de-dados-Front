@@ -2,6 +2,7 @@ body {
     display: flex;
     flex-direction: column;
 
+
     justify-content: center;
     align-items: center;
 
@@ -84,6 +85,28 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+}
+
+.quadrado-animado {
+    text-align: center;
+    font-weight: 700;
+    line-height: 50px;
+    font-size: 22px;
+    padding: 0 5px;
+    min-width: 45px;
+    height: 0; /* Começa com altura zero */
+    margin: 5px;
+    border-radius: 3px;
+    background-color: #658d41;
+    color: #fdfdfd;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    animation: expand 0.5s forwards; /* Inicia a animação chamada "expand" */
+}
+
+@keyframes expand {
+    to {
+        height: 45px; /* Altura final */
+    }
 }
 
 .quadrado {

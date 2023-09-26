@@ -4,7 +4,6 @@ body {
 
     justify-content: center;
     align-items: center;
-
     width: 100vw;
 
     font-family: 'Montserrat';
@@ -15,7 +14,7 @@ body {
 .container {
     margin: 20px;
     padding: 1em;
-    width: 850px;
+    width: 900px; 
     height: auto;
     background-color: #fdfdfd;
     border-radius: 8px;
@@ -33,21 +32,21 @@ body {
 }
 
 .input{
-    width: 150px;
+    width: 200px;
 
     font-family: 'Montserrat';
     font-size: 16px;
     font-weight: 700;
 
     background-color: #fdfdfd;
-    color: #658d41;
-    border: solid 2px #658d41;
+    color: #F66A69;
+    border: solid 2px #F66A69;
 
     border-radius: 3px;
 }
 
 .input:active{
-    border: solid 2px #658d41;
+    border: solid 2px #F66A69;
 }
 
 
@@ -59,8 +58,8 @@ body {
     align-items: center;
     
     background-color: #fdfdfd;
-    color: #658d41;
-    border: solid 2px #658d41;
+    color: #F66A69;
+    border: solid 2px #F66A69;
     
     border-radius: 3px;
     cursor: pointer;
@@ -69,7 +68,7 @@ body {
 }
 
 .button:hover{
-    background-color: #658d41;
+    background-color: #F66A69;
     color: #fdfdfd;
 }
 
@@ -86,7 +85,7 @@ body {
     margin-top: 20px;
 }
 
-.square {
+.quadrado {
     text-align: center;
     font-weight: 700;
     line-height: 50px;
@@ -99,19 +98,64 @@ body {
     margin: 5px;
     border-radius: 3px;
     
-    background-color: #658d41;
+    background-color: #F66A69;
     color: #fdfdfd;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
     
     transition: 0.2s;
 }
 
-.square:hover{
-    background-color: #658d41;
+.quadrado-animado {
+    text-align: center;
+    font-weight: 700;
+    line-height: 50px;
+    font-size: 22px;
+    padding: 0 5px;
+    min-width: 45px;
+    height: 0; /* Começa com altura zero */
+    margin: 5px;
+    border-radius: 3px;
+    background-color: #F66A69;
+    color: #fdfdfd;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    animation: expand 0.5s forwards; /* Inicia a animação chamada "expand" */
+}
+
+@keyframes expand {
+    to {
+        height: 45px; /* Altura final */
+    }
+}
+
+.quadrado:hover{
+    background-color: #d45656;
     cursor: pointer;
 }
 
 .text{
     margin-top: 15px;
     font-weight: 700;
+}
+
+.double-arrow {
+    font-size: 60px; 
+    margin-left: 5px;
+    line-height: 0.5;
+    transform: scaleX(0.8);
+}
+
+.arrow {
+    font-size: 60px; 
+    margin-left: 5px;
+}
+
+.arrow-inver {
+    font-size: 60px; 
+    margin-left: 5px;
+}
+
+.list-item {
+    display: flex;
+    align-items: center; 
+    margin-right: 10px;
 }

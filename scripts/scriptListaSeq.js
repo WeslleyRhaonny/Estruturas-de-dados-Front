@@ -22,7 +22,7 @@ function criaListaVisualmente() {
 
     for (let i = 0; i < tamMax; i++) {
         const quadrado = document.createElement("div");
-        quadrado.className = "quadrado";
+        quadrado.className = "quadrado-animado";
         visualLista.appendChild(quadrado);
     }
 }

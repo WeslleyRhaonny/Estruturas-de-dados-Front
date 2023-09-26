@@ -6,23 +6,35 @@
     <title>Lista Duplamente Encadeada</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 
+    <!-- Fonts do projeto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;900&display=swap" rel="stylesheet">
+    
+
+    <!--CSS-->
     <link rel="stylesheet" href="./styles/reset.css">
-    <link rel="stylesheet" href="./styles/LDE.css">
+    <link rel="stylesheet" type="text/css" href="./styles/LDE.css">
 
 </head>
 <body>
-    <div id="container">
-        <h1>Lista Duplamente Encadeada</h1>
-        <input type="number" id="numberInput" placeholder="Insira um número">
-        <input type="number" id="posInput" placeholder="Insira a posição">
-        <button onclick="insert()">Inserir</button>
+    <ul class="menu">
+        <li class="menu-item"><a class="menu-link" href="/index.html">Menu</a></li>
+        <li class="menu-item"><a class="menu-link" href="/listaSequencial.html">Lista sequencial</a></li>
+        <li class="menu-item"><a class="menu-link" href="/ListaSimplesmenteEncadeada.html"> Lista simplesmente encadeada</a></li>
+    </ul>
+    <div id="container" class = "container">
+        <h1 class="container-title">Lista Duplamente Encadeada</h1>
+        <input class="input" type="number" id="numberInput" placeholder="Insira um número">
+        <input class="input" type="number" id="posInput" placeholder="Insira a posição">
+        <button class="button insert" onclick="insert()">Inserir</button>
         <!-- <button onclick="deleteNumber()">Remover por valor</button> -->
-        <button onclick="remove()">Remover por id</button>
-        <button onclick="buscaNumero()">Buscar por valor</button>
-        <button onclick="buscaNumeroPosicao()">Buscar por id</button>
+        <button class="button removeID" onclick="remove()">Remover por id</button>
+        <button class="button buscaNumero" onclick="buscaNumero()">Buscar por valor</button>
+        <button class="button numeroPosition" onclick="buscaNumeroPosicao()">Buscar por id</button>
         <div id="output"></div>
         <div id="visualList" class="visual-list"></div>
-        <h3 id="elementCount">Número de elementos: 00</h3>
+        <h3 class="text" id="elementCount">Número de elementos: 0</h3>
     </div>
     <script src="scripts/scriptLDE.js"></script>
 </body>
