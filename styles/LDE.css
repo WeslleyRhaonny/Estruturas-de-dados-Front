@@ -12,7 +12,6 @@ body {
 }
 
 .container {
-    margin: 20px;
     padding: 1em;
     width: 900px; 
     height: auto;
@@ -29,6 +28,58 @@ body {
 
     font-size: 36px;
     font-weight: 900;    
+}
+
+.menu-container{
+    width: 900px;
+    text-align: left;
+}
+
+.menu{
+    margin-top: 15px;
+    list-style: none;
+    padding: 0; /* Remove o preenchimento interno da lista */ 
+}
+
+.menu-item{
+    margin-top: 15px;
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    display: inline;
+    margin-right: 0px;
+}
+
+.menu-link{
+    margin: 0px;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+
+    background-color: #F66A69;
+    color: #fdfdfd;
+
+    border-radius: 3px 3px 0px 0px;
+    transition: 0.2s;
+}
+
+.menu-item:first-child .menu-link{
+    margin: 0px;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+
+    background-color: #fdfdfd;
+    color: #F66A69;
+
+    border-radius: 3px 3px 0px 0px;
+
+}
+
+.menu-item:not(:first-child) .menu-link:hover{
+    background-color: #ae4c4c;
 }
 
 .input{
@@ -118,6 +169,7 @@ body {
     background-color: #F66A69;
     color: #fdfdfd;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    transition: 0.2s;
     animation: expand 0.5s forwards; /* Inicia a animação chamada "expand" */
 }
 
@@ -125,6 +177,10 @@ body {
     to {
         height: 45px; /* Altura final */
     }
+}
+
+.quadrado-animado:hover{
+    background-color: #d45656;
 }
 
 .quadrado:hover{

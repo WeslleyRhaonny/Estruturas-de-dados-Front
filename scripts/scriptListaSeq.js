@@ -22,7 +22,7 @@ function criaListaVisualmente() {
 
     for (let i = 0; i < tamMax; i++) {
         const quadrado = document.createElement("div");
-        quadrado.className = "quadrado-animado";
+        quadrado.className = "quadrado";
         visualLista.appendChild(quadrado);
     }
 }
@@ -43,7 +43,7 @@ function atualizaListaVisual() {
 
 function insereNumero() {
     if(indice == tamMax){
-        alert("A listaa está totalmente preenchida");
+        alert("A lista está totalmente preenchida");
         return;
     }
     

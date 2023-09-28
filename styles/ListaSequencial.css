@@ -32,7 +32,6 @@ body {
 
 .menu-container{
     width: 900px;
-    text-align: left;
 }
 
 .menu{
@@ -61,7 +60,25 @@ body {
     color: #fdfdfd;
 
     border-radius: 3px 3px 0px 0px;
+    transition: 0.2s;
+}
 
+.menu-item:first-child .menu-link{
+    margin: 0px;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+
+    background-color: #fdfdfd;
+    color: #5865F2;
+
+    border-radius: 3px 3px 0px 0px;
+
+}
+
+.menu-item:not(:first-child) .menu-link:hover{
+    background-color: rgb(63, 72, 169);
 }
 
 .input{
