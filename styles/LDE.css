@@ -146,7 +146,7 @@ body {
     
     min-width: 45px;
     height: 45px;
-    margin: 5px;
+    margin: 15px 5px 5px;
     border-radius: 3px;
     
     background-color: #F66A69;
@@ -164,7 +164,7 @@ body {
     padding: 0 5px;
     min-width: 45px;
     height: 0; /* Começa com altura zero */
-    margin: 5px;
+    margin: 15px 5px 5px;
     border-radius: 3px;
     background-color: #F66A69;
     color: #fdfdfd;

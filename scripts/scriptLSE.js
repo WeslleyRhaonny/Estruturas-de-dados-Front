@@ -16,51 +16,6 @@ class LSE {
         return this.nElementos === 0;
     }
 
-    tamanho() { // Conferir se utilizamos essa função em algum lugar
-        let aux = this.cabeca;
-        let cont = 0;
-        while (aux !== null) { 
-            aux = aux.prox();
-            cont++;
-        }
-        return cont;
-    }
-
-    elemento(pos) { // Conferir se utilizamos essa função em algum lugar
-        if (this.vazia()) {
-            return -1;
-        }
-
-        if (pos < 1 || pos > this.tamanho()) {
-            return -1;
-        } 
-
-        let aux = this.cabeca;
-        for (let i = 1; i < pos; i++) {
-            aux = aux.prox;
-        }
-
-        return aux.conteudo();
-    }
-
-    posicao(dado) {
-        if (this.vazia()) {
-            return -1;
-        }
-
-        let aux = this.cabeca;
-        let cont = 1;
-        while (aux !== null) {
-            if (aux.conteudo() === dado) {
-                return cont;
-            }
-            aux = aux.prox;
-            cont++;
-        }
-
-        return -1;
-    }
-
     criaListaVisualmente() {
         const visualList = document.getElementById("visualList");
         visualList.innerHTML = "";
@@ -133,9 +88,15 @@ class LSE {
         let novoNo = new No();
         novoNo.conteudo = parseInt(document.getElementById("numberInput").value);
 
+        if (isNaN(novoNo.conteudo)) {
+            alert("O campo 'Insira um número' não pode estar vazio.");
+            return false;
+        }
+
         novoNo.prox = this.cabeca;
         this.cabeca = novoNo;
         this.nElementos++;
+
 
         // Cria caixas com base na lista atualizada
         this.criaListaVisualmente();
@@ -146,11 +107,18 @@ class LSE {
     insereMeioLista() {
         let novoNo = new No();
         novoNo.conteudo = parseInt(document.getElementById("numberInput").value);
+
+        if (isNaN(novoNo.conteudo)) {
+            alert("O campo 'Insira um número' não pode estar vazio.");
+            return false;
+        }
+
         const posInput = document.getElementById("posInput");
         const pos = isNaN(parseInt(posInput.value)) ? this.nElementos + 1 : parseInt(posInput.value);
         if (pos <= 0 || pos > this.nElementos + 1) {
             return false;
         }
+
     
         let aux = this.cabeca;
         for (let i = 1; i < pos - 1; i++) {
@@ -233,6 +201,11 @@ class LSE {
             return -1;
         }
 
+        if (isNaN(pos)) {
+            alert("insira uma posição válida");
+            return false;
+        }
+
         if (pos <= 0 || pos > this.nElementos) {
             return -1;
         }
@@ -295,7 +268,7 @@ function buscaNumero() {
     const valorProcurado = parseInt(document.getElementById("numberInput").value);
     const posicao = lista.buscaPorValor(valorProcurado);
 
-    if (posicao !== -1) {
+    if (posicao !== -1 && !isNaN(valorProcurado)) {
         alert(`O número ${valorProcurado} está na posição ${posicao}.`);
     } else {
         alert("O valor não foi encontrado na lista.");
@@ -306,9 +279,10 @@ function buscaNumeroPosicao() {
     const posicaoDesejada = parseInt(document.getElementById("posInput").value);
     const valorEncontrado = lista.buscaPorPosicao(posicaoDesejada);
 
-    if (valorEncontrado !== -1) {
+    if (valorEncontrado !== -1 && !isNaN(posicaoDesejada)) {
         alert(`O valor na posição ${posicaoDesejada} é ${valorEncontrado}.`);
     } else {
         alert("Posição inválida.");
     }
 }
+

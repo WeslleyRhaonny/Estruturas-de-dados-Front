@@ -17,26 +17,6 @@ class LDE {
         return this.tamanho === 0;
     }
 
-    tamanho() {
-        return this.tamanho;
-    }
-
-    elemento(pos) {
-        let aux = this.inicio;
-        let cont = 1;
-
-        if (this.vazia() || pos < 1 || pos > this.tamanho) {
-            return -1; // Consulta falhou
-        }
-
-        while (cont < pos) {
-            aux = aux.prox;
-            cont++;
-        }
-
-        return aux.conteudo;
-    }
-
     criaListaVisualmente() {
         const visualList = document.getElementById("visualList");
         visualList.innerHTML = "";
@@ -141,28 +121,14 @@ class LDE {
         visualList.appendChild(arrowInver);
     }
 
-    posicao(dado) {
-        let aux = this.inicio;
-        let cont = 1;
-
-        if (this.vazia()) {
-            return -1;
-        }
-
-        while (aux !== null) {
-            if (aux.conteudo === dado) {
-                return cont;
-            }
-            aux = aux.prox;
-            cont++;
-        }
-
-        return -1;
-    }
-
     insereInicioLista(valor) {
         let novoNo = new No();
         novoNo.conteudo = valor;
+
+        if (isNaN(novoNo.conteudo)) {
+            alert("O campo 'Insira um número' não pode estar vazio.");
+            return false;
+        }
 
         novoNo.prox = this.inicio;
         novoNo.ant = null;
@@ -184,6 +150,11 @@ class LDE {
         let novoNo = new No();
         novoNo.conteudo = valor;
 
+        if (isNaN(novoNo.conteudo)) {
+            alert("O campo 'Insira um número' não pode estar vazio.");
+            return false;
+        }
+
         novoNo.prox = null;
         novoNo.ant = this.fim;
 
@@ -203,6 +174,11 @@ class LDE {
     insereMeioLista(pos, valor) {
         let novoNo = new No();
         novoNo.conteudo = valor;
+
+        if (isNaN(novoNo.conteudo)) {
+            alert("O campo 'Insira um número' não pode estar vazio.");
+            return false;
+        }
 
         let aux = this.inicio;
         let cont = 1;
@@ -381,7 +357,7 @@ function buscaNumeroPosicao() {
     const posicaoDesejada = parseInt(document.getElementById("posInput").value);
     const valorEncontrado = lista.buscaPorPosicao(posicaoDesejada);
 
-    if (valorEncontrado !== -1) {
+    if (valorEncontrado !== -1 && !isNaN(posicaoDesejada)) {
         alert(`O valor na posição ${posicaoDesejada} é ${valorEncontrado}.`);
     } else {
         alert("Posição inválida.");
