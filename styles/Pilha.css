@@ -1,0 +1,197 @@
+body {
+    display: flex;
+    flex-direction: column;
+
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+
+    font-family: 'Montserrat';
+    text-align: center;
+    background-color: #29292A;
+}
+
+.container {
+    padding: 1em;
+    width: 900px; 
+    height: auto;
+    background-color: #fdfdfd;
+    border-radius: 8px;
+    box-shadow: 0px 8px 12px rgba(0,0,0,0.3);
+}
+
+.container-title{
+    margin-bottom: 0.6em;
+
+    color: #20202A;
+    text-align: center;
+
+    font-size: 36px;
+    font-weight: 900;    
+}
+
+.menu-container{
+    width: 900px;
+    text-align: left;
+}
+
+.menu{
+    margin-top: 15px;
+    list-style: none;
+    padding: 0; /* Remove o preenchimento interno da lista */ 
+}
+
+.menu-item{
+    margin-top: 15px;
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    display: inline;
+    margin-right: 0px;
+}
+
+.menu-link{
+    margin: 0px;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+
+    background-color: #836FFF;
+    color: #fdfdfd;
+
+    border-radius: 3px 3px 0px 0px;
+    transition: 0.2s;
+}
+
+.menu-item:first-child .menu-link{
+    margin: 0px;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+
+    background-color: #fdfdfd;
+    color: #836FFF;
+
+    border-radius: 3px 3px 0px 0px;
+
+}
+
+.menu-item:not(:first-child) .menu-link:hover{
+    background-color: #6A5ACD;
+}
+
+.input{
+    width: 200px;
+
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-weight: 700;
+
+    background-color: #fdfdfd;
+    color: #836FFF;
+    border: solid 2px #836FFF;
+
+    border-radius: 3px;
+}
+
+.input:active{
+    border: solid 2px #836FFF;
+}
+
+
+
+.button{
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 16px;
+    align-items: center;
+    
+    background-color: #fdfdfd;
+    color: #836FFF;
+    border: solid 2px #836FFF;
+    
+    border-radius: 3px;
+    cursor: pointer;
+    
+    transition: 0.2s;
+}
+
+.button:hover{
+    background-color: #836FFF;
+    color: #fdfdfd;
+}
+
+#output {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.visual-list {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.quadrado-animado {
+    text-align: center;
+    font-weight: 700;
+    line-height: 50px;
+    font-size: 22px;
+    padding: 0 5px;
+    min-width: 45px;
+    height: 0; /* Começa com altura zero */
+    margin: 5px;
+    border-radius: 3px;
+    background-color: #836FFF;
+    color: #fdfdfd;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    transition: 0.2s;
+    animation: expand 0.5s forwards; /* Inicia a animação chamada "expand" */
+}
+
+@keyframes expand {
+    to {
+        height: 45px; /* Altura final */
+    }
+}
+
+.quadrado-animado:hover{
+    background-color: #6A5ACD;
+}
+
+.quadrado {
+    text-align: center;
+    font-weight: 700;
+    line-height: 50px;
+    font-size: 22px;
+    
+    padding: 0 5px;
+    
+    min-width: 45px;
+    height: 45px;
+    margin: 5px;
+    border-radius: 3px;
+    
+    background-color: #836FFF;
+    color: #fdfdfd;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+    
+    transition: 0.2s;
+}
+
+.quadrado:hover{
+    background-color: #6A5ACD;
+    cursor: pointer;
+}
+
+.text{
+    margin-top: 15px;
+    font-weight: 700;
+}

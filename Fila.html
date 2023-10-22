@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Simplesmente Encadeada</title>
+    <title>Fila</title>
 
     <!-- Fonts do projeto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,33 +12,31 @@
     
 
     <link rel="stylesheet" href="./styles/reset.css">
-    <link rel="stylesheet" href="./styles/LSE.css">
+    <link rel="stylesheet" href="./styles/Fila.css">
 
 </head>
 <body>
     <ul class="menu">
-        <li class="menu-item"><a class="menu-link" href="#">LSE</a></li>
+        <li class="menu-item"><a class="menu-link" href="#">Fila</a></li>
         <li class="menu-item"><a class="menu-link" href="/listaSequencial.html">Lista sequencial</a></li>
+        <li class="menu-item"><a class="menu-link" href="/ListaSimplesmenteEncadeada.html">LSE</a></li>
         <li class="menu-item"><a class="menu-link" href="/ListaDuplamenteEncadeada.html">LDE</a></li>
         <li class="menu-item"><a class="menu-link" href="/Pilha.html">Pilha</a></li>
-        <li class="menu-item"><a class="menu-link" href="/Fila.html">Fila</a></li>
         <li class="menu-item"><a class="menu-link" href="/ArvoreBinariaDePesquisa.html">ABP</a></li>
         <li class="menu-item"><a class="menu-link" href="/index.html">Menu</a></li>
     </ul>
     <div id="container" class = "container">
         
-        <h1 class="container-title">Lista Simplesmente Encadeada</h1>
+        <h1 class="container-title">Fila</h1>
         <input class="input" type="number" id="numberInput" placeholder="Insira um número">
-        <input class="input" type="number" id="posInput" placeholder="Insira a posição">
         <button class="button insert" onclick="insert()">Inserir</button>
         <!-- <button onclick="deleteNumber()">Remover por valor</button> -->
-        <button class="button removeID" onclick="remove()">Remover por id</button>
-        <button class="button buscaNumero" onclick="buscaNumero()">Buscar por valor</button>
-        <button class="button numeroPosition" onclick="buscaNumeroPosicao()">Buscar por id</button>
+        <button class="button removeID" onclick="remove()">Remover</button>
+        <button class="button buscaNumero" onclick="primeiro()">Buscar 1° elemento</button>
         <div id="output"></div>
         <div id="visualList" class="visual-list"></div>
         <h3 class="text" id="elementCount">Número de elementos: 0</h3>
     </div>
-    <script src="scripts/scriptLSE.js"></script>
+    <script src="scripts/scriptFila.js"></script>
 </body>
 </html>
