@@ -84,8 +84,14 @@ class FilaSeq {
     insere(valor) {
         if (this.cheia()) {
             alert("Fila cheia!");
+            return false;
         }
-    
+
+        if (isNaN(valor)) {
+            alert("O campo 'Insira um número' não pode estar vazio.");
+            return false;
+        }
+
         this.fim = (this.fim + 1) % this.tamMax; // Circularidade
         this.dados[this.fim] = valor;
     
@@ -121,11 +127,11 @@ function remove() {
 }
 
 function primeiro() {
-    const topValue = fila.primeiro(); 
-    if(!topValue){
-        alert('A pilha está vazia. :(')
+    const inicio = fila.primeiro(); 
+    if(!inicio){
+        alert('A fila está vazia. :(')
     }else{
-        alert(`O número ${topValue} está no topo da pilha!`);
+        alert(`O número ${inicio} está no início da fila!`);
     }
 }
 
