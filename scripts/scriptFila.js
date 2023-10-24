@@ -32,6 +32,48 @@ class FilaSeq {
             } else {
                 quadrados[i].textContent = "";
             }
+
+
+            if (i === 0 && this.nElementos > 0) {
+                const arrowInicio = document.createElement("div");
+                arrowInicio.textContent = "↑"; // Caractere da seta para cima
+                arrowInicio.className = "arrow";
+                quadrados[i].appendChild(arrowInicio);
+    
+                const inicioLabel = document.createElement("span");
+                inicioLabel.textContent = "Início";
+                inicioLabel.className = "arrow-label";
+                quadrados[i].appendChild(inicioLabel);
+            }
+
+            let ultimoIndice = this.nElementos -1;
+        
+            if (ultimoIndice > 0) {
+                const arrowFim = document.createElement("div");
+                arrowFim.textContent = "↑"; // Caractere da seta para baixo
+                arrowFim.className = "arrow";
+                quadrados[ultimoIndice].appendChild(arrowFim);
+        
+                const fimLabel = document.createElement("span");
+                fimLabel.textContent = "Fim";
+                fimLabel.className = "arrow-label";
+                quadrados[ultimoIndice].appendChild(fimLabel);
+        
+                // Calcule a posição do último quadrado
+                const lastSquare = quadrados[ultimoIndice];
+                const lastSquareRect = lastSquare.getBoundingClientRect();
+        
+                // Ajuste a posição da seta para o centro do último quadrado
+                arrowFim.style.position = "absolute";
+                arrowFim.style.left = (lastSquareRect.left + lastSquareRect.width / 2 - 20) + "px";
+                arrowFim.style.top = lastSquareRect.bottom + 5 + "px";
+        
+                // Ajuste a posição da label "Fim" abaixo da seta
+                fimLabel.style.position = "absolute";
+                fimLabel.style.left = (lastSquareRect.left + lastSquareRect.width / 2 - 10) + "px";
+                fimLabel.style.top = lastSquareRect.bottom + 47 + "px"; // Ajuste conforme necessário
+            }
+        
         }
     
         const elementCount = document.getElementById("elementCount");
@@ -47,7 +89,9 @@ class FilaSeq {
         for (let i = 1; i < quadrados.length; i++) {
             if (i - 1 < this.nElementos) {
                 quadrados[i - 1].textContent = quadrados[i].textContent;
+
             }
+            
         }
     
         if (this.nElementos < this.tamMax) {

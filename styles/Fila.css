@@ -194,3 +194,26 @@ body {
     margin-top: 15px;
     font-weight: 700;
 }
+
+.arrow {
+    font-size: 60px; 
+    margin-left: 5px;
+    margin-top: -10px;
+    color: #000000;
+}
+
+.list-item {
+    display: flex;
+    align-items: center; 
+    margin-right: 10px;
+}
+
+#elementCount {
+    margin-top: 3cm; 
+}
+
+.arrow-label {
+    font-size: 14px; /* Tamanho de fonte para "Início" */
+    color: #000000;
+}
+
