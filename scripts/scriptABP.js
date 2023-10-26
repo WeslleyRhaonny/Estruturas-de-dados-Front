@@ -232,7 +232,6 @@ function exibeInOrdem_(nodeList, index) {
         const node = nodeList[index];
         animateSearchResultInOrdem(node.svgElement); // Chama a animação
         setTimeout(function () {
-            //animateSearchResultInOrdem(node.svgElement); // Reverte a animação
             exibeInOrdem_(nodeList, index + 1); // Chama a próxima animação
         }, 2000); // Atraso de 2 segundos entre cada nó em milissegundos
     }
@@ -291,9 +290,6 @@ searchButton.addEventListener("click", () => {
 
             const valorEsq = resultadoBusca.left ? resultadoBusca.left.value : "não possui";
             const valorDir = resultadoBusca.right ? resultadoBusca.right.value : "não possui";
-
-            // !!!!!!!!!!!!!!! Perguntar ao pessoal se é melhor só a animação ou se é bom ter o alert !!!!!!!!!!!!!!!
-            //alert("O elemento de valor " + valor + " está na lista. Filho da esquerda: " + valorEsq + ". Filho da direita: " + valorDir);
         }
     }
     nodeValueInput.value = "";
