@@ -17,142 +17,10 @@ class BinarySearchTree {
         return this.root === null;
     }
 
-    drawTree() {
-        const svg = document.getElementById("treeSVG");
-        const svgWidth = 1200; // Largura inicial
-        const svgHeight = 600; // Altura inicial
-    
-        // Função interna para calcular a largura e a altura necessárias
-        function calculateDimensions(node, offsetX, offsetY) {
-            if (node) {
-                if (offsetX > svgWidth) {
-                    svgWidth = offsetX;
-                }
-                if (offsetY > svgHeight) {
-                    svgHeight = offsetY;
-                }
-                const newOffsetX = offsetX / 2;
-                const newOffsetY = offsetY + 100;
-    
-                if (node.left) {
-                    calculateDimensions(node.left, newOffsetX, newOffsetY);
-                }
-                if (node.right) {
-                    calculateDimensions(node.right, newOffsetX, newOffsetY);
-                }
-            }
-        }
-    
-        // Comece o desenho a partir da raiz
-        if (this.root) {
-            calculateDimensions(this.root, svgWidth / 2, 0);
-        }
-    
-        // Ajuste a largura e a altura do SVG de acordo com os cálculos
-        svg.setAttribute("width", svgWidth);
-        svg.setAttribute("height", svgHeight);
-    
-        // Função interna para desenhar os nós e conexões
-        function drawNode(node, x, y, offsetX) {
-            if (node) {
-                // Verifique se o nó já foi desenhado
-                if (!node.svgElement) {
-                    // Desenhe o círculo representando o nó
-                    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-                    circle.setAttribute("cx", x);
-                    circle.setAttribute("cy", y);
-                    circle.setAttribute("r", 20);
-                    svg.appendChild(circle);
-    
-                    // Exiba o valor do nó
-                    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-                    text.setAttribute("x", x);
-                    text.setAttribute("y", y + 5);
-                    text.setAttribute("text-anchor", "middle");
-                    text.setAttribute("fill", "#FFA500");
-                    text.textContent = node.value;
-                    svg.appendChild(text);
-    
-                    // Defina o elemento SVG no nó
-                    node.svgElement = circle;
-    
-                    // Armazene as coordenadas no nó para atualizações futuras
-                    node.x = x;
-                    node.y = y;
-                }
-    
-                // Calcule as coordenadas para os filhos
-                const offsetY = 100;
-    
-                if (node.left) {
-                    const xLeft = x - offsetX;
-                    const yLeft = y + offsetY;
-                    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                    line.setAttribute("x1", x);
-                    line.setAttribute("y1", y + 20);
-                    line.setAttribute("x2", xLeft);
-                    line.setAttribute("y2", yLeft - 20);
-                    line.setAttribute("stroke", "#FFA500");
-                    svg.appendChild(line);
-                    drawNode(node.left, xLeft, yLeft, offsetX / 2);
-                }
-    
-                if (node.right) {
-                    const xRight = x + offsetX;
-                    const yRight = y + offsetY;
-                    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                    line.setAttribute("x1", x);
-                    line.setAttribute("y1", y + 20);
-                    line.setAttribute("x2", xRight);
-                    line.setAttribute("y2", yRight - 20);
-                    line.setAttribute("stroke", "#FFA500");
-                    svg.appendChild(line);
-                    drawNode(node.right, xRight, yRight, offsetX / 2);
-                }
-            }
-        }
-    
-        // Comece o desenho a partir da raiz
-        if (this.root) {
-            drawNode(this.root, svgWidth / 2, 50, svgWidth / 4);
-        }
-    }
-
     atualizaArvoreVisual() {
         const elementCount = document.getElementById("elementCount");
         elementCount.textContent = `Número de elementos: ${this.tamanho}`;
     }
-
-    removeNodeVisual(nodeVisual) {
-        if (this.nodeVisual === null) {
-            return;
-        }
-    
-        const svg = document.getElementById("treeSVG");
-    
-        // Remova o círculo representando o nó
-        if (node.svgElement) {
-            svg.removeChild(node.svgElement);
-        }
-    
-        // Remova o texto representando o valor do nó
-        const textElements = svg.getElementsByTagName("text");
-        for (let i = 0; i < textElements.length; i++) {
-            if (textElements[i].textContent === node.value.toString()) {
-                svg.removeChild(textElements[i]);
-                break; // Saia do loop depois de encontrar e remover o texto
-            }
-        }
-    
-        // Após a remoção visual, defina o elemento SVG no nó como nulo
-        node.svgElement = null;
-    
-        // Agora você pode chamar a função de desenhar novamente para atualizar a árvore
-        this.drawTree(); // Esta linha atualiza a árvore visual
-    }
-    
-    
-
     
     search(node, value) {
         if (node === null) {
@@ -317,18 +185,6 @@ class BinarySearchTree {
         
 }
 
-const bst = new BinarySearchTree();
-
-/*function insert() {
-    bst.insert(); // Chama o método insere da instância criada
-}
-
-function remove() {
-    const valueToRemove = parseInt(document.getElementById("numberInput").value);
-    bst.remove(valueToRemove);
-}*/
-
-
 // ===== Função de animação =====
 function animateSearchResult(nodeElement) {
     let count = 0;
@@ -352,22 +208,6 @@ function animateSearchResult(nodeElement) {
     blink(); // Chama a animação.
 }
 
-function search() {
-    const valor = parseInt(document.getElementById("numberInput").value);
-    const resultadoBusca = tree.searchValueIterative(valor);
-
-    if (resultadoBusca === null) {
-        alert("Nenhum elemento na lista com o valor: " + valor);
-    } else {
-        //animateSearchResult(resultadoBusca.svgElement); // Chama a animação
-
-        const valorEsq = resultadoBusca.left ? resultadoBusca.left.value : "não possui";
-        const valorDir = resultadoBusca.right ? resultadoBusca.right.value : "não possui";
-
-        // !!!!!!!!!!!!!!! Perguntar ao pessoal se é melhor só a animação ou se é bom ter o alert !!!!!!!!!!!!!!!
-        alert("O elemento de valor " + valor + " está na lista. Filho da esquerda: " + valorEsq + ". Filho da direita: " + valorDir);
-    }
-}
 
 function animateSearchResultInOrdem(nodeElement) {
     function blink(count) {
