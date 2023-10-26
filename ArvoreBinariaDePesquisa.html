@@ -26,19 +26,23 @@
         <li class="menu-item"><a class="menu-link" href="/index.html">Menu</a></li>
     </ul>
     <div id="container" class = "container">
-        
         <h1 class="container-title">Árvore Binária de Pesquisa</h1>
         <input class="input" type="number" id="numberInput" placeholder="Insira um número">
-        <button class="button insert" onclick="insert()">Inserir</button>
         <!-- <button onclick="deleteNumber()">Remover por valor</button> -->
-        <button class="button removeID" onclick="remove()">Remover</button>
-        <button class="button buscaNumero" onclick="search()">Buscar</button>
-        <button class="button caminhamento" onclick="caminho()">Caminho</button>
+        <button class="button insert" id="insertNode">Inserir</button>
+        <button class="button removeID" id="removeNodeButton">Remover</button>
+        <button class="button buscaNumero" id="searchNodeButton">Buscar</button>
+        <button class="button caminhamento" id="walkNodeButton">In-ordem</button>
         <div id="output"></div>
-        <svg id="treeSVG" width="1200" height="600"></svg>
-        <div id="visualList" class="visual-list"></div>
         <h3 class="text" id="elementCount">Número de elementos: 0</h3>
+        <div class="tree" id="tree">
+            <svg id="tree-container" width="1200" height="600"></svg>
+
+            <!-- Árvore será gerada dinamicamente aqui -->
+        </div>
     </div>
     <script src="scripts/scriptABP.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
 </body>
 </html>
