@@ -44,9 +44,7 @@ class FilaSeq {
                 inicioLabel.textContent = "Início";
                 inicioLabel.className = "arrow-label";
                 quadrados[i].appendChild(inicioLabel);
-            }
-
-        
+            }   
         }
         let ultimoIndice = this.nElementos -1;
 
@@ -89,6 +87,7 @@ class FilaSeq {
         for (let i = 1; i < quadrados.length; i++) {
             if (i - 1 < this.nElementos) {
                 quadrados[i - 1].textContent = quadrados[i].textContent;
+
             }
             
         }

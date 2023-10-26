@@ -21,6 +21,7 @@ const Stack = () => {
         }
     };
 
+    
     const getTop = () => {
         if (top < 0) {
             return false;
@@ -31,6 +32,7 @@ const Stack = () => {
 
     const renderVisualStack = () => {
         const visualList = document.getElementById("visualList");
+        const topArrow = document.getElementById("topArrow"); 
         visualList.innerHTML = ""; // Limpa a lista visual antes de atualizar
 
         for (let i = 0; i <= top; i++) {
@@ -38,6 +40,17 @@ const Stack = () => {
             square.classList.add("quadrado-animado");
             square.innerText = data[i];
             visualList.appendChild(square);
+        }
+
+
+        if (top >= 0) {
+            topArrow.style.display = "block";
+            const topElement = visualList.lastChild; 
+            const topArrowWidth = topArrow.offsetWidth;
+            topArrow.style.top = (topElement.offsetTop + 10) + "px"; 
+            topArrow.style.left = (topElement.offsetLeft + topElement.offsetWidth - 20) + "px"; // Alinha horizontalmente com o topo
+        } else {
+            topArrow.style.display = "none";
         }
 
         const elementCount = document.getElementById("elementCount");
