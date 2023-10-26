@@ -299,12 +299,12 @@ class BinarySearchTree {
                 this.tamanho--;
                 return node;
             }
-
-            const minValueNode = this.findMinNode(node.right);
-            node.value = minValueNode.value;
-            node.right = this.removeNode(node.right, minValueNode.value);
-            this.tamanho--;
-            return node;
+            else{
+                const minValueNode = this.findMinNode(node.right);
+                node.value = minValueNode.value;
+                node.right = this.removeNode(node.right, minValueNode.value);
+                return node;
+            }
         }
     }
 
@@ -439,19 +439,22 @@ removeButton.addEventListener("click", () => {
 });
 
 searchButton.addEventListener("click", () => {
+    
     const valor = parseInt(document.getElementById("numberInput").value);
-    const resultadoBusca = tree.searchValueIterative(valor);
+    if(!isNaN(valor)){
+        const resultadoBusca = tree.searchValueIterative(valor);
 
-    if (resultadoBusca === null) {
-        alert("Nenhum elemento na lista com o valor: " + valor);
-    } else {
-        animateSearchResult(resultadoBusca.svgElement); // Chama a animação
+        if (resultadoBusca === null) {
+            alert("Nenhum elemento na lista com o valor: " + valor);
+        } else {
+            animateSearchResult(resultadoBusca.svgElement); // Chama a animação
 
-        const valorEsq = resultadoBusca.left ? resultadoBusca.left.value : "não possui";
-        const valorDir = resultadoBusca.right ? resultadoBusca.right.value : "não possui";
+            const valorEsq = resultadoBusca.left ? resultadoBusca.left.value : "não possui";
+            const valorDir = resultadoBusca.right ? resultadoBusca.right.value : "não possui";
 
-        // !!!!!!!!!!!!!!! Perguntar ao pessoal se é melhor só a animação ou se é bom ter o alert !!!!!!!!!!!!!!!
-        //alert("O elemento de valor " + valor + " está na lista. Filho da esquerda: " + valorEsq + ". Filho da direita: " + valorDir);
+            // !!!!!!!!!!!!!!! Perguntar ao pessoal se é melhor só a animação ou se é bom ter o alert !!!!!!!!!!!!!!!
+            //alert("O elemento de valor " + valor + " está na lista. Filho da esquerda: " + valorEsq + ". Filho da direita: " + valorDir);
+        }
     }
     nodeValueInput.value = "";
 });
